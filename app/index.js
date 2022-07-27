@@ -43,7 +43,7 @@ buttonAdd.addEventListener('click', () => {
 
 	 
 
-    inputAdd.focus(); // посмотреть что такое focus
+    inputAdd.focus();
     render();
 });
 
@@ -95,4 +95,4 @@ function render() {
 // 	console.log(valueLabel);
 // })
 
-render();//что это?}
+render();
