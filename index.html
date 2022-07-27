@@ -5,6 +5,11 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="./styles/styles.css">
 	<title>ToDo-App</title>
 	<script src="./app/index.js" defer></script>
@@ -12,22 +17,31 @@
 
 <body>
 
-	<div class="container">
-
-		<div class="todo-app">
-			<h1>Enter your task</h1>
-			<div class="create-new-todo">
-				<button class="btn-del">Delete All</button>
-				<input type="text" class="input-todo" placeholder="Please enter your task">
-				<button class="btn-add">Add task</button>
-				<div class="todo-list">
-					<ul class="todo"></ul>
+	<body>
+		<h1>Enter your task:</h1>
+		<div class="container">
+			<div class="todo">
+				<input type="text" class="todo__input-add" data-input-add placeholder="Please enter your task">
+				<div class="todo__buttons">
+					<button type="button" class="todo__button-add" data-button-add>Add task</button>
+					<button type="button" class="todo__button-del-all" todo__button-del-all>Delete all</button>
 				</div>
 
-			</div>
+				<hr>
 
+				<div class="todo__container" data-todo-container>
+				</div>
+			</div>
 		</div>
 
-</body>
+		<template data-todo-item-tamplate="">
+			<div class="todo__item" data-todo-item>
+				<input type="checkbox" class="todo__checkbox" data-todo-checkbox>
+				<div class="todo__title" data-todo-title>Please do something</div>
+				<div class="todo__date" data-todo-date></div>
+				<button class="todo__button-del" data-button-del>✖</button>
+			</div>
+		</template>
+	</body>
 
 </html>
