@@ -2,6 +2,7 @@ const todoItemTemplate = document.querySelector('[data-todo-item-tamplate]');
 const todoContainer = document.querySelector('[data-todo-container]');
 const inputAdd = document.querySelector('[data-input-add]');
 const buttonAdd = document.querySelector('[data-button-add]');
+const buttonDelAll = document.querySelector('[todo__button-del-all]');
 
 const writeLocalStorage = () => {localStorage.setItem('todosList', JSON.stringify(todos))};
 
@@ -19,9 +20,10 @@ const  todayDate = (
 	month = new Date().getMonth() + 1,
 	day = new Date().getDate(),
     hour = new Date().getHours(),
-    min = new Date().getMinutes()
+    min = new Date().getMinutes(),
+
 ) => { const dateToDo = new Date(year, month, day, hour, min);
-	return `${dateToDo.getDate()}.${dateToDo.getMonth()}.${dateToDo.getFullYear()} \\\\ ${dateToDo.getHours()}:${dateToDo.getMinutes()}` 
+	return `${dateToDo.getDate()}.${dateToDo.getMonth()}.${dateToDo.getFullYear()} -|- ${dateToDo.getHours()}:${dateToDo.getMinutes()}` 
  };
 
 
@@ -64,11 +66,11 @@ function createTodoItem(id, text, date, checked) {
     })
 
     return todoItem;
-}
+};
 
 function clearTodoList() {
     todoContainer.innerHTML = '';
-}
+};
 
 function appendTodos() {
     if (todos.length) {
@@ -82,13 +84,19 @@ function appendTodos() {
         `<p class="no-task" >No tasks...</p>`
         )
     }
-}
+};
 
 function render() {
     clearTodoList();
     appendTodos();
 	
-}
+};
+
+buttonDelAll.addEventListener('click', () => {
+	todos.splice(0, todos.length);
+	writeLocalStorage();
+	render();
+});
 
 // todoContainer.addEventListener('change', function(event) {
 // 	let valueLabel = todoContainer.querySelector('[for='+ event.target.getAttribute('id') + ']').innerHTML;
