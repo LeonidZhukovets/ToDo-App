@@ -37,11 +37,15 @@ buttonAdd.addEventListener('click', () => {
             text,
             date: todayDate(),
             checked: false
-        }
+        };
         todos.push(newTodo);
         inputAdd.value = '';
 		  writeLocalStorage();
-    };
+		 
+    }
+	 else {
+		alert('Please enter your task!')
+	  };
 
 	 
 
