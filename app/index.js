@@ -60,14 +60,26 @@ function createTodoItem(id, text, date, checked) {
     todoText.textContent = text;
     const todoDate = todoItem.querySelector('[data-todo-date]');
     todoDate.textContent = date;
+	 const todoCheck = todoItem.querySelector('[data-todo-checkbox]');
+    todoCheck.checked = checked;
 
+	 todoCheck.addEventListener('change', (e) => {
+		todos = todos.map( item => {
+			 if (item.id === id) {
+				  item.checked = e.target.checked;
+			 }
+			 return item
+		});
+		writeLocalStorage();
+		});
+		
     const buttonRemove = todoItem.querySelector('[data-button-del]');
 
     buttonRemove.addEventListener('click', () => {
         todos = todos.filter(todo => todo.id !== id);
 		  writeLocalStorage();
         render();
-    })
+    });
 
     return todoItem;
 };
