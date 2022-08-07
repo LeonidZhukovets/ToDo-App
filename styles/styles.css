@@ -32,6 +32,7 @@ h1 {
   border: 1px solid black;
   border-radius: 0.25em;
   transition: box-shadow 0.15s ease-in-out;
+  box-shadow: 0 0 15px 4px rgba(74, 8, 230, 0.438);
 }
 
 .todo__buttons {
