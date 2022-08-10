@@ -1,4 +1,4 @@
-const todoItemTemplate = document.querySelector('[data-todo-item-tamplate]');
+const todoItemTemplate = document.querySelector('[data-todo-item-template]');
 const todoContainer = document.querySelector('[data-todo-container]');
 const inputAdd = document.querySelector('[data-input-add]');
 const buttonAdd = document.querySelector('[data-button-add]');
@@ -15,17 +15,17 @@ if (localStorage.getItem('todosList')){
 	appendTodos();
 }
 
-const  todayDate = (
-	year = new Date().getFullYear(),
-	month = new Date().getMonth() + 1,
-	day = new Date().getDate(),
-    hour = new Date().getHours(),
-    min = new Date().getMinutes(),
 
-) => { const dateToDo = new Date(year, month, day, hour, min);
-	return `${dateToDo.getDate()}.${dateToDo.getMonth()}.${dateToDo.getFullYear()} -|- ${dateToDo.getHours()}:${dateToDo.getMinutes()}` 
+const todayDate = (date) => {
+	let day = date.getDate();
+	let month = date.getMonth() + 1;
+	let year = date.getFullYear();
+	let hour = date.getHours();
+	let min = date.getMinutes();
+	min < 10 ? (min = '0' + min) : min;
+	return `${day}.${month}.${year} -|- ${hour}:${min}`;
  };
-
+ 
 
 
 buttonAdd.addEventListener('click', () => {
@@ -33,9 +33,9 @@ buttonAdd.addEventListener('click', () => {
 
     if (text !== '' ) {
         const newTodo = {
-            id: todos.length + 1,
+            id: Date.now(),
             text,
-            date: todayDate(),
+            date: todayDate(new Date()),
             checked: false
         };
         todos.push(newTodo);
@@ -114,9 +114,5 @@ buttonDelAll.addEventListener('click', () => {
 	render();
 });
 
-// todoContainer.addEventListener('change', function(event) {
-// 	let valueLabel = todoContainer.querySelector('[for='+ event.target.getAttribute('id') + ']').innerHTML;
-// 	console.log(valueLabel);
-// })
 
 render();
