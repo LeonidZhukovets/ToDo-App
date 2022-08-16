@@ -122,3 +122,7 @@ hr {
 .search {
   width: 100%;
 }
+
+.todo__date {
+  font-size: smaller;
+}
