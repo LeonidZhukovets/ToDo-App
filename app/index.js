@@ -4,7 +4,7 @@ const inputAdd = document.querySelector('[data-input-add]');
 const buttonAdd = document.querySelector('[data-button-add]');
 const buttonDelAll = document.querySelector('[todo__button-del-all]');
 const activeTasks = document.querySelector('[data-active-tasks]');
-const complitedTasks = document.querySelector('[data-complited-tasks]');
+const completedTasks = document.querySelector('[data-completed-tasks]');
 const search = document.querySelector('[data-search-todo]');
 
 const writeLocalStorage = () => {localStorage.setItem('todosList', JSON.stringify(todos))};
@@ -144,7 +144,7 @@ function updateActiveTasks(){
   };
   
 function updateCompletedTasks(){
-    complitedTasks.innerHTML = todos.filter((el) => el.checked).length;
+    completedTasks.innerHTML = todos.filter((el) => el.checked).length;
   };
 
 
