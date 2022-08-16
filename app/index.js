@@ -25,6 +25,8 @@ const todayDate = (date) => {
 	let year = date.getFullYear();
 	let hour = date.getHours();
 	let min = date.getMinutes();
+	day< 10 ? (day = '0' + day) : day;
+	month < 10 ? (month = '0' + month) : month;
 	min < 10 ? (min = '0' + min) : min;
 	return `${day}.${month}.${year} -|- ${hour}:${min}`;
  };
