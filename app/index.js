@@ -3,6 +3,9 @@ const todoContainer = document.querySelector('[data-todo-container]');
 const inputAdd = document.querySelector('[data-input-add]');
 const buttonAdd = document.querySelector('[data-button-add]');
 const buttonDelAll = document.querySelector('[todo__button-del-all]');
+const activeTasks = document.querySelector('[data-active-tasks]');
+const complitedTasks = document.querySelector('[data-complited-tasks]');
+const search = document.querySelector('[data-search-todo]');
 
 const writeLocalStorage = () => {localStorage.setItem('todosList', JSON.stringify(todos))};
 
@@ -70,6 +73,8 @@ function createTodoItem(id, text, date, checked) {
 			 }
 			 return item
 		});
+        updateActiveTasks();
+        updateCompletedTasks();
 		writeLocalStorage();
 		});
 		
@@ -88,8 +93,8 @@ function clearTodoList() {
     todoContainer.innerHTML = '';
 };
 
-function appendTodos() {
-    if (todos.length) {
+function appendTodos(todos) {
+    if (todos && todos.length) {
         todos.forEach(el => {
             const todo =  createTodoItem(el.id, el.text, el.date, el.checked);
             todoContainer.append(todo);
@@ -102,17 +107,45 @@ function appendTodos() {
     }
 };
 
-function render() {
+function render(filteredTodos) {
     clearTodoList();
-    appendTodos();
+    appendTodos(filteredTodos && filteredTodos.length ? filteredTodos : todos);
+    updateActiveTasks();
+    updateCompletedTasks();
 	
 };
 
 buttonDelAll.addEventListener('click', () => {
 	todos.splice(0, todos.length);
+    updateActiveTasks();
+    updateCompletedTasks();
 	writeLocalStorage();
 	render();
 });
+
+search.addEventListener('input', () => {
+    const searchText = search.value.trim();
+
+    if (searchText) {
+        const searchTodos = todos.filter( el => el.text.includes(searchText));
+        if(searchTodos && searchTodos.length){
+            render(searchTodos);
+        } else {
+            todoContainer.innerHTML="<p class=\"no-task\" >Nothing Found...</p>";
+        }
+    }
+     else {
+      render(todos);
+    }
+  });
+
+function updateActiveTasks(){
+    activeTasks.innerHTML = todos.filter((el) => !el.checked).length;
+  };
+  
+function updateCompletedTasks(){
+    complitedTasks.innerHTML = todos.filter((el) => el.checked).length;
+  };
 
 
 render();

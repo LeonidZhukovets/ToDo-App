@@ -73,6 +73,7 @@ h1 {
   height: 30px;
   background-color: rgba(138, 216, 240, 0.226);
   border-radius: 0.5em;
+  cursor: pointer;
 }
 
 .todo__button-del {
@@ -106,4 +107,10 @@ h1 {
 }
 hr {
   width: 500px;
+}
+
+.calc-tasks {
+  display: flex;
+  justify-content: space-around;
+  font-size: large;
 }
